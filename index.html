@@ -102,6 +102,15 @@
         input[type="text"]:focus, input[type="number"]:focus, select:focus {
             border-color: var(--primary-green);
         }
+        
+        /* Nova classe para a mensagem de limite */
+        .msg-limite {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-top: 6px;
+            font-weight: 600;
+            display: none;
+        }
 
         .btn-submit {
             width: 100%;
@@ -140,7 +149,8 @@
     <form id="rsvpForm">
         <div class="form-group">
             <label for="nome">Seu Nome Completo:</label>
-            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            <input type="text" id="nome" placeholder="Digite seu nome" required autocomplete="off">
+            <div id="mensagemLimite" class="msg-limite"></div>
         </div>
 
         <div class="form-group">
@@ -161,16 +171,76 @@
 </div>
 
 <script>
-    // Altere este número para o seu WhatsApp (DDI + DDD + número)
-    const SEU_WHATSAPP = "5581999999999"; 
+    // Configuração do WhatsApp do Destinatário
+    const NUMERO_WHATSAPP = "5581998654686"; 
 
+    // Dicionário com as restrições extraídas da planilha
+    const restricoesConvidados = {
+        "wilson": 2, "elizangela": 2, "brenda": 2, "maria josé": 3, "eron": 4, 
+        "kelly": 4, "malcione": 3, "marlete": 3, "milena": 2, "joão paulo": 2, 
+        "abraão": 2, "lucas": 3, "natan": 2, "mateus": 3, "janaina": 2, 
+        "lindinho": 1, "leide": 1, "neide": 1, "ester": 1, "bia": 1, 
+        "leni": 1, "marida": 1, "marido": 1, "ericka": 1, "emíli": 1, 
+        "lidia": 1, "henrique": 1, "esposa": 1, "filho": 1, "ezel": 1, 
+        "caio": 1, "jaqueline": 1, "filha": 1, "leninha": 1, "kamila": 1, "kaline": 1
+    };
+
+    const inputNome = document.getElementById('nome');
+    const inputAcompanhantes = document.getElementById('acompanhantes');
+    const mensagemLimite = document.getElementById('mensagemLimite');
+    
+    // Variável para armazenar o limite detectado (padrão é 1)
+    let limiteAtual = 1; 
+
+    // Evento disparado sempre que o usuário digita no campo "Nome"
+    inputNome.addEventListener('input', function() {
+        const nomeDigitado = this.value.toLowerCase().trim();
+        limiteAtual = 1; // Reseta para o limite padrão caso apague o nome
+        
+        if (nomeDigitado.length > 1) {
+            // Ordena os nomes da lista do maior para o menor (Ex: Garante que "João Paulo" seja verificado antes de "João")
+            const chaves = Object.keys(restricoesConvidados).sort((a, b) => b.length - a.length);
+
+            for (let chave of chaves) {
+                // Checa se o que foi digitado começa igual a algum nome da lista
+                if (nomeDigitado.startsWith(chave)) {
+                    limiteAtual = restricoesConvidados[chave];
+                    break;
+                }
+            }
+
+            // Exibe a mensagem de limite para orientar o usuário
+            mensagemLimite.style.display = 'block';
+            mensagemLimite.innerHTML = `🌟 Identificamos limite de até <strong>${limiteAtual} pessoa(s)</strong> para você.`;
+        } else {
+            mensagemLimite.style.display = 'none';
+        }
+
+        // Aplica o limite máximo dinamicamente no campo numérico
+        inputAcompanhantes.max = limiteAtual;
+        
+        // Se a quantidade já inserida for maior que o novo limite, corrige automaticamente
+        if (parseInt(inputAcompanhantes.value) > limiteAtual) {
+            inputAcompanhantes.value = limiteAtual;
+        }
+    });
+
+    // Evento de envio do formulário
     document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const nome = document.getElementById('nome').value;
         const presenca = document.getElementById('presenca').value;
-        const quantidade = document.getElementById('acompanhantes').value;
+        const quantidade = parseInt(document.getElementById('acompanhantes').value);
 
+        // Barreira extra de segurança: bloqueia o envio se tentarem burlar o HTML
+        if (presenca === "Sim" && quantidade > limiteAtual) {
+            alert(`Atenção: A quantidade excede o limite. Você pode confirmar no máximo ${limiteAtual} pessoa(s).`);
+            inputAcompanhantes.value = limiteAtual;
+            return; 
+        }
+
+        // Montagem da mensagem formatada
         let mensagem = `Olá! Confirmando RSVP para o aniversário do *Daniel (1 Aninho)*:\n\n`;
         mensagem += `👤 *Nome:* ${nome}\n`;
         
@@ -181,7 +251,8 @@
             mensagem += `❌ *Presença:* Não poderei comparecer.\n`;
         }
 
-        const url = `https://wa.me/${81998654686}?text=${encodeURIComponent(mensagem)}`;
+        // Gera o link e abre no WhatsApp
+        const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
         window.open(url, '_blank');
     });
 </script>
