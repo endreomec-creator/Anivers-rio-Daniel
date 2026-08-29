@@ -148,16 +148,25 @@
 
     let limitePermitido = 1;
 
+    // Remove acentos e converte para minúsculas antes de consultar a API
+    function normalizarTextoLocal(texto) {
+        return texto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+    }
+
     async function buscarRestricao() {
         const nomeInput = document.getElementById('nome').value.trim();
         const msgDiv = document.getElementById('mensagemLimite');
 
-        if (nomeInput !== "") {
+        if (nomeInput.length >= 3) {
             msgDiv.style.display = "block";
             msgDiv.innerText = "Buscando convite...";
 
             try {
-                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(nomeInput)}`);
+                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(normalizarTextoLocal(nomeInput))}`);
                 const data = await res.json();
 
                 if (data.encontrado) {
@@ -170,6 +179,8 @@
             } catch (err) {
                 msgDiv.innerText = "Erro ao consultar a lista de convidados.";
             }
+        } else {
+            msgDiv.style.display = "none";
         }
     }
 
