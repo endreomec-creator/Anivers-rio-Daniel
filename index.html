@@ -150,7 +150,6 @@
 </div>
 
 <script>
-    const NUMERO_WHATSAPP = "5581998654686";
     const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
     let limitePermitido = 1;
@@ -215,7 +214,7 @@
         btn.disabled = true;
         btn.innerText = "Enviando...";
 
-        // 1. Salva automaticamente no Google Sheets via Apps Script
+        // Salva automaticamente no Google Sheets
         try {
             await fetch(URL_WEB_APP, {
                 method: "POST",
@@ -227,25 +226,14 @@
                     criancas: presenca === "Sim" ? criancas : 0
                 })
             });
+
+            alert("Confirmação enviada com sucesso! Obrigado.");
+            document.getElementById('rsvpForm').reset();
+            document.getElementById('mensagemLimite').style.display = 'none';
         } catch (error) {
             console.error("Erro ao salvar no Google Sheets:", error);
+            alert("Ocorreu um erro ao salvar sua confirmação. Tente novamente.");
         }
-
-        // 2. Envia a mensagem formatada para o WhatsApp
-        let mensagem = `Olá! Confirmando RSVP para o aniversário do *Daniel (1 Aninho)*:\n\n`;
-        mensagem += `👤 *Nome:* ${nomeCompleto}\n`;
-        
-        if (presenca === "Sim") {
-            mensagem += `✅ *Presença:* Confirmada!\n`;
-            mensagem += `👨‍💼 *Adultos:* ${adultos}\n`;
-            mensagem += `🧒 *Crianças:* ${criancas}\n`;
-            mensagem += `👥 *Total:* ${total} pessoa(s)\n`;
-        } else {
-            mensagem += `❌ *Presença:* Não poderei comparecer.\n`;
-        }
-
-        const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-        window.open(url, '_blank');
 
         btn.disabled = false;
         btn.innerText = "Confirmar Presença";
