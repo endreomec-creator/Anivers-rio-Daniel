@@ -111,15 +111,9 @@
     </div>
 
     <form id="rsvpForm">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="primeiroNome">Primeiro Nome:</label>
-                <input type="text" id="primeiroNome" placeholder="Ex: Maria" required>
-            </div>
-            <div class="form-group">
-                <label for="ultimoNome">Último Nome:</label>
-                <input type="text" id="ultimoNome" placeholder="Ex: Silva" required>
-            </div>
+        <div class="form-group">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
         </div>
 
         <div id="mensagemLimite" class="msg-limite" style="display:none; margin-bottom: 15px;"></div>
@@ -155,17 +149,15 @@
     let limitePermitido = 1;
 
     async function buscarRestricao() {
-        const pNome = document.getElementById('primeiroNome').value.trim();
-        const uNome = document.getElementById('ultimoNome').value.trim();
+        const nomeInput = document.getElementById('nome').value.trim();
         const msgDiv = document.getElementById('mensagemLimite');
 
-        if (pNome !== "" && uNome !== "") {
-            const nomeBusca = `${pNome} ${uNome}`;
+        if (nomeInput !== "") {
             msgDiv.style.display = "block";
             msgDiv.innerText = "Buscando convite...";
 
             try {
-                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(nomeBusca)}`);
+                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(nomeInput)}`);
                 const data = await res.json();
 
                 if (data.encontrado) {
@@ -181,8 +173,7 @@
         }
     }
 
-    document.getElementById('primeiroNome').addEventListener('blur', buscarRestricao);
-    document.getElementById('ultimoNome').addEventListener('blur', buscarRestricao);
+    document.getElementById('nome').addEventListener('blur', buscarRestricao);
 
     document.getElementById('presenca').addEventListener('change', function() {
         document.getElementById('camposQuantidade').style.display = this.value === "Sim" ? "block" : "none";
@@ -192,9 +183,7 @@
         e.preventDefault();
 
         const btn = document.getElementById('btnConfirmar');
-        const pNome = document.getElementById('primeiroNome').value.trim();
-        const uNome = document.getElementById('ultimoNome').value.trim();
-        const nomeCompleto = `${pNome} ${uNome}`;
+        const nomeCompleto = document.getElementById('nome').value.trim();
         const presenca = document.getElementById('presenca').value;
         const adultos = parseInt(document.getElementById('adultos').value) || 0;
         const criancas = parseInt(document.getElementById('criancas').value) || 0;
@@ -214,7 +203,6 @@
         btn.disabled = true;
         btn.innerText = "Enviando...";
 
-        // Salva automaticamente no Google Sheets
         try {
             await fetch(URL_WEB_APP, {
                 method: "POST",
