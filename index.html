@@ -37,30 +37,10 @@
             border: 2px solid #e0d6c3;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .header span {
-            font-size: 0.9rem;
-            color: var(--wood-brown);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
-        .header h1 {
-            color: var(--primary-green);
-            margin: 8px 0 4px 0;
-            font-size: 1.8rem;
-        }
-
-        .header p {
-            color: var(--accent-green);
-            margin: 0;
-            font-weight: 600;
-        }
+        .header { text-align: center; margin-bottom: 24px; }
+        .header span { font-size: 0.9rem; color: var(--wood-brown); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+        .header h1 { color: var(--primary-green); margin: 8px 0 4px 0; font-size: 1.8rem; }
+        .header p { color: var(--accent-green); margin: 0; font-weight: 600; }
 
         .details-box {
             background-color: #f9f6f0;
@@ -70,23 +50,10 @@
             margin-bottom: 24px;
             font-size: 0.95rem;
         }
+        .details-box p { margin: 6px 0; color: #4a4a4a; }
 
-        .details-box p {
-            margin: 6px 0;
-            color: #4a4a4a;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: var(--primary-green);
-            font-size: 0.95rem;
-        }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: var(--primary-green); font-size: 0.95rem; }
 
         input[type="text"], input[type="number"], select {
             width: 100%;
@@ -99,17 +66,16 @@
             transition: border-color 0.2s;
         }
 
-        input[type="text"]:focus, input[type="number"]:focus, select:focus {
-            border-color: var(--primary-green);
-        }
-        
-        /* Nova classe para a mensagem de limite */
+        input[type="text"]:focus, input[type="number"]:focus, select:focus { border-color: var(--primary-green); }
+
+        .form-row { display: flex; gap: 12px; }
+        .form-row .form-group { flex: 1; }
+
         .msg-limite {
             font-size: 0.85rem;
             color: var(--accent-green);
             margin-top: 6px;
             font-weight: 600;
-            display: none;
         }
 
         .btn-submit {
@@ -126,9 +92,7 @@
             margin-top: 10px;
         }
 
-        .btn-submit:hover {
-            background-color: var(--accent-green);
-        }
+        .btn-submit:hover { background-color: var(--accent-green); }
     </style>
 </head>
 <body>
@@ -147,11 +111,18 @@
     </div>
 
     <form id="rsvpForm">
-        <div class="form-group">
-            <label for="nome">Seu Nome Completo:</label>
-            <input type="text" id="nome" placeholder="Digite seu nome" required autocomplete="off">
-            <div id="mensagemLimite" class="msg-limite"></div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="primeiroNome">Primeiro Nome:</label>
+                <input type="text" id="primeiroNome" placeholder="Ex: Maria" required>
+            </div>
+            <div class="form-group">
+                <label for="ultimoNome">Último Nome:</label>
+                <input type="text" id="ultimoNome" placeholder="Ex: Silva" required>
+            </div>
         </div>
+
+        <div id="mensagemLimite" class="msg-limite" style="display:none; margin-bottom: 15px;"></div>
 
         <div class="form-group">
             <label for="presenca">Você irá ao evento?</label>
@@ -161,99 +132,123 @@
             </select>
         </div>
 
-        <div class="form-group" id="groupAcompanhantes">
-            <label for="acompanhantes">Quantidade de Pessoas (incluindo você):</label>
-            <input type="number" id="acompanhantes" min="1" value="1" required>
+        <div id="camposQuantidade">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="adultos">Adultos:</label>
+                    <input type="number" id="adultos" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="criancas">Crianças:</label>
+                    <input type="number" id="criancas" min="0" value="0" required>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" class="btn-submit">Confirmar Presença</button>
+        <button type="submit" class="btn-submit" id="btnConfirmar">Confirmar Presença</button>
     </form>
 </div>
 
 <script>
-    // Configuração do WhatsApp do Destinatário
-    const NUMERO_WHATSAPP = "5581998654686"; 
+    const NUMERO_WHATSAPP = "5581998654686";
+    const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
-    // Dicionário com as restrições extraídas da planilha
-    const restricoesConvidados = {
-        "wilson": 2, "elizangela": 2, "brenda": 2, "maria josé": 3, "eron": 4, 
-        "kelly": 4, "malcione": 3, "marlete": 3, "milena": 2, "joão paulo": 2, 
-        "abraão": 2, "lucas": 3, "natan": 2, "mateus": 3, "janaina": 2, 
-        "lindinho": 1, "leide": 1, "neide": 1, "ester": 1, "bia": 1, 
-        "leni": 1, "marida": 1, "marido": 1, "ericka": 1, "emíli": 1, 
-        "lidia": 1, "henrique": 1, "esposa": 1, "filho": 1, "ezel": 1, 
-        "caio": 1, "jaqueline": 1, "filha": 1, "leninha": 1, "kamila": 1, "kaline": 1
-    };
+    let limitePermitido = 1;
 
-    const inputNome = document.getElementById('nome');
-    const inputAcompanhantes = document.getElementById('acompanhantes');
-    const mensagemLimite = document.getElementById('mensagemLimite');
-    
-    // Variável para armazenar o limite detectado (padrão é 1)
-    let limiteAtual = 1; 
+    async function buscarRestricao() {
+        const pNome = document.getElementById('primeiroNome').value.trim();
+        const uNome = document.getElementById('ultimoNome').value.trim();
+        const msgDiv = document.getElementById('mensagemLimite');
 
-    // Evento disparado sempre que o usuário digita no campo "Nome"
-    inputNome.addEventListener('input', function() {
-        const nomeDigitado = this.value.toLowerCase().trim();
-        limiteAtual = 1; // Reseta para o limite padrão caso apague o nome
-        
-        if (nomeDigitado.length > 1) {
-            // Ordena os nomes da lista do maior para o menor (Ex: Garante que "João Paulo" seja verificado antes de "João")
-            const chaves = Object.keys(restricoesConvidados).sort((a, b) => b.length - a.length);
+        if (pNome !== "" && uNome !== "") {
+            const nomeBusca = `${pNome} ${uNome}`;
+            msgDiv.style.display = "block";
+            msgDiv.innerText = "Buscando convite...";
 
-            for (let chave of chaves) {
-                // Checa se o que foi digitado começa igual a algum nome da lista
-                if (nomeDigitado.startsWith(chave)) {
-                    limiteAtual = restricoesConvidados[chave];
-                    break;
+            try {
+                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(nomeBusca)}`);
+                const data = await res.json();
+
+                if (data.encontrado) {
+                    limitePermitido = data.limite;
+                    msgDiv.innerHTML = `🌟 Convite localizado! Você pode confirmar até <strong>${limitePermitido} pessoa(s)</strong> no total.`;
+                } else {
+                    limitePermitido = 1;
+                    msgDiv.innerHTML = `⚠️ Nome não localizado na lista de convites. Limite padrão: 1 pessoa.`;
                 }
+            } catch (err) {
+                msgDiv.innerText = "Erro ao consultar a lista de convidados.";
             }
-
-            // Exibe a mensagem de limite para orientar o usuário
-            mensagemLimite.style.display = 'block';
-            mensagemLimite.innerHTML = `🌟 Identificamos limite de até <strong>${limiteAtual} pessoa(s)</strong> para você.`;
-        } else {
-            mensagemLimite.style.display = 'none';
         }
+    }
 
-        // Aplica o limite máximo dinamicamente no campo numérico
-        inputAcompanhantes.max = limiteAtual;
-        
-        // Se a quantidade já inserida for maior que o novo limite, corrige automaticamente
-        if (parseInt(inputAcompanhantes.value) > limiteAtual) {
-            inputAcompanhantes.value = limiteAtual;
-        }
+    document.getElementById('primeiroNome').addEventListener('blur', buscarRestricao);
+    document.getElementById('ultimoNome').addEventListener('blur', buscarRestricao);
+
+    document.getElementById('presenca').addEventListener('change', function() {
+        document.getElementById('camposQuantidade').style.display = this.value === "Sim" ? "block" : "none";
     });
 
-    // Evento de envio do formulário
-    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        const nome = document.getElementById('nome').value;
-        const presenca = document.getElementById('presenca').value;
-        const quantidade = parseInt(document.getElementById('acompanhantes').value);
 
-        // Barreira extra de segurança: bloqueia o envio se tentarem burlar o HTML
-        if (presenca === "Sim" && quantidade > limiteAtual) {
-            alert(`Atenção: A quantidade excede o limite. Você pode confirmar no máximo ${limiteAtual} pessoa(s).`);
-            inputAcompanhantes.value = limiteAtual;
-            return; 
+        const btn = document.getElementById('btnConfirmar');
+        const pNome = document.getElementById('primeiroNome').value.trim();
+        const uNome = document.getElementById('ultimoNome').value.trim();
+        const nomeCompleto = `${pNome} ${uNome}`;
+        const presenca = document.getElementById('presenca').value;
+        const adultos = parseInt(document.getElementById('adultos').value) || 0;
+        const criancas = parseInt(document.getElementById('criancas').value) || 0;
+        const total = adultos + criancas;
+
+        if (presenca === "Sim") {
+            if (total > limitePermitido) {
+                alert(`A quantidade total (${total}) excede o seu limite permitido de ${limitePermitido} pessoa(s).`);
+                return;
+            }
+            if (total < 1) {
+                alert("Por favor, selecione ao menos 1 adulto ou criança.");
+                return;
+            }
         }
 
-        // Montagem da mensagem formatada
+        btn.disabled = true;
+        btn.innerText = "Enviando...";
+
+        // 1. Salva automaticamente no Google Sheets via Apps Script
+        try {
+            await fetch(URL_WEB_APP, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nome: nomeCompleto,
+                    adultos: presenca === "Sim" ? adultos : 0,
+                    criancas: presenca === "Sim" ? criancas : 0
+                })
+            });
+        } catch (error) {
+            console.error("Erro ao salvar no Google Sheets:", error);
+        }
+
+        // 2. Envia a mensagem formatada para o WhatsApp
         let mensagem = `Olá! Confirmando RSVP para o aniversário do *Daniel (1 Aninho)*:\n\n`;
-        mensagem += `👤 *Nome:* ${nome}\n`;
+        mensagem += `👤 *Nome:* ${nomeCompleto}\n`;
         
         if (presenca === "Sim") {
             mensagem += `✅ *Presença:* Confirmada!\n`;
-            mensagem += `👥 *Total de pessoas:* ${quantidade}\n`;
+            mensagem += `👨‍💼 *Adultos:* ${adultos}\n`;
+            mensagem += `🧒 *Crianças:* ${criancas}\n`;
+            mensagem += `👥 *Total:* ${total} pessoa(s)\n`;
         } else {
             mensagem += `❌ *Presença:* Não poderei comparecer.\n`;
         }
 
-        // Gera o link e abre no WhatsApp
         const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
         window.open(url, '_blank');
+
+        btn.disabled = false;
+        btn.innerText = "Confirmar Presença";
     });
 </script>
 
