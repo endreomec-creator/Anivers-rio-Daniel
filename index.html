@@ -77,6 +77,14 @@
             margin-top: 6px;
             font-weight: 600;
         }
+        
+        .erro-duplicado {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #d32f2f;
+        }
 
         .btn-submit {
             width: 100%;
@@ -93,6 +101,7 @@
         }
 
         .btn-submit:hover { background-color: var(--accent-green); }
+        .btn-submit:disabled { background-color: #999; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -144,31 +153,42 @@
 </div>
 
 <script>
+    // A URL PODE CONTINUAR A MESMA, APENAS COLOQUEI A QUE VOCÊ INFORMOU ANTES
     const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
     let limitePermitido = 1;
 
-    // Remove acentos e converte para minúsculas antes de consultar a API
     function normalizarTextoLocal(texto) {
-        return texto
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .trim();
+        return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
     }
 
     async function buscarRestricao() {
         const nomeInput = document.getElementById('nome').value.trim();
         const msgDiv = document.getElementById('mensagemLimite');
+        const btn = document.getElementById('btnConfirmar');
 
         if (nomeInput.length >= 3) {
             msgDiv.style.display = "block";
+            msgDiv.className = "msg-limite";
             msgDiv.innerText = "Buscando convite...";
 
             try {
                 const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(normalizarTextoLocal(nomeInput))}`);
                 const data = await res.json();
 
+                // 1. SE A PESSOA JÁ RESPONDEU, BLOQUEIA O FORMULÁRIO!
+                if (data.jaRespondeu) {
+                    msgDiv.className = "msg-limite erro-duplicado";
+                    msgDiv.innerHTML = `⚠️ <strong>${data.mensagem}</strong>`;
+                    btn.disabled = true; // Impede clicar no botão
+                    limitePermitido = 0;
+                    return;
+                }
+
+                // Desbloqueia o botão caso ela mude o nome para alguém que não respondeu
+                btn.disabled = false;
+
+                // 2. BUSCA O LIMITE NORMAL
                 if (data.encontrado) {
                     limitePermitido = data.limite;
                     msgDiv.innerHTML = `🌟 Convite localizado! Você pode confirmar até <strong>${limitePermitido} pessoa(s)</strong> no total.`;
@@ -221,16 +241,17 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     nome: nomeCompleto,
+                    presenca: presenca, // AGORA ENVIA EXATAMENTE SE VAI OU NÃO
                     adultos: presenca === "Sim" ? adultos : 0,
                     criancas: presenca === "Sim" ? criancas : 0
                 })
             });
 
-            alert("Confirmação enviada com sucesso! Obrigado.");
+            alert("Confirmação processada com sucesso! Obrigado.");
             document.getElementById('rsvpForm').reset();
             document.getElementById('mensagemLimite').style.display = 'none';
         } catch (error) {
-            console.error("Erro ao salvar no Google Sheets:", error);
+            console.error("Erro:", error);
             alert("Ocorreu um erro ao salvar sua confirmação. Tente novamente.");
         }
 
