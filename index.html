@@ -77,13 +77,15 @@
             margin-top: 6px;
             font-weight: 600;
         }
-        
+
         .erro-duplicado {
             color: #d32f2f;
             background: #ffebee;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 8px;
             border-left: 4px solid #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
 
         .btn-submit {
@@ -101,7 +103,7 @@
         }
 
         .btn-submit:hover { background-color: var(--accent-green); }
-        .btn-submit:disabled { background-color: #999; cursor: not-allowed; }
+        .btn-submit:disabled { background-color: #a0a0a0; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -153,10 +155,10 @@
 </div>
 
 <script>
-    // A URL PODE CONTINUAR A MESMA, APENAS COLOQUEI A QUE VOCÊ INFORMOU ANTES
     const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
     let limitePermitido = 1;
+    let convidadoJaRespondeu = false;
 
     function normalizarTextoLocal(texto) {
         return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -176,19 +178,18 @@
                 const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(normalizarTextoLocal(nomeInput))}`);
                 const data = await res.json();
 
-                // 1. SE A PESSOA JÁ RESPONDEU, BLOQUEIA O FORMULÁRIO!
                 if (data.jaRespondeu) {
+                    convidadoJaRespondeu = true;
                     msgDiv.className = "msg-limite erro-duplicado";
                     msgDiv.innerHTML = `⚠️ <strong>${data.mensagem}</strong>`;
-                    btn.disabled = true; // Impede clicar no botão
-                    limitePermitido = 0;
+                    btn.disabled = true;
                     return;
                 }
 
-                // Desbloqueia o botão caso ela mude o nome para alguém que não respondeu
+                // Se não respondeu, libera o botão
+                convidadoJaRespondeu = false;
                 btn.disabled = false;
 
-                // 2. BUSCA O LIMITE NORMAL
                 if (data.encontrado) {
                     limitePermitido = data.limite;
                     msgDiv.innerHTML = `🌟 Convite localizado! Você pode confirmar até <strong>${limitePermitido} pessoa(s)</strong> no total.`;
@@ -220,6 +221,11 @@
         const criancas = parseInt(document.getElementById('criancas').value) || 0;
         const total = adultos + criancas;
 
+        if (convidadoJaRespondeu) {
+            alert("Convite respondido, falar com Jana ou Endreo");
+            return;
+        }
+
         if (presenca === "Sim") {
             if (total > limitePermitido) {
                 alert(`A quantidade total (${total}) excede o seu limite permitido de ${limitePermitido} pessoa(s).`);
@@ -241,7 +247,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     nome: nomeCompleto,
-                    presenca: presenca, // AGORA ENVIA EXATAMENTE SE VAI OU NÃO
+                    presenca: presenca,
                     adultos: presenca === "Sim" ? adultos : 0,
                     criancas: presenca === "Sim" ? criancas : 0
                 })
