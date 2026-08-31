@@ -124,7 +124,7 @@
     <form id="rsvpForm">
         <div class="form-group">
             <label for="nome">Seu Nome:</label>
-            <input type="text" id="nome" placeholder="Digite seu primeiro nome" required>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
         </div>
 
         <div id="mensagemLimite" class="msg-limite" style="display:none; margin-bottom: 15px;"></div>
@@ -158,7 +158,6 @@
     const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
     let limitePermitido = 1;
-    let convidadoJaRespondeu = false;
 
     function normalizarTextoLocal(texto) {
         return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -179,15 +178,12 @@
                 const data = await res.json();
 
                 if (data.jaRespondeu) {
-                    convidadoJaRespondeu = true;
                     msgDiv.className = "msg-limite erro-duplicado";
                     msgDiv.innerHTML = `⚠️ <strong>${data.mensagem}</strong>`;
                     btn.disabled = true;
-                    return;
+                    return true;
                 }
 
-                // Se não respondeu, libera o botão
-                convidadoJaRespondeu = false;
                 btn.disabled = false;
 
                 if (data.encontrado) {
@@ -197,11 +193,14 @@
                     limitePermitido = 1;
                     msgDiv.innerHTML = `⚠️ Nome não localizado na lista de convites. Limite padrão: 1 pessoa.`;
                 }
+                return false;
             } catch (err) {
                 msgDiv.innerText = "Erro ao consultar a lista de convidados.";
+                return false;
             }
         } else {
             msgDiv.style.display = "none";
+            return false;
         }
     }
 
@@ -221,23 +220,32 @@
         const criancas = parseInt(document.getElementById('criancas').value) || 0;
         const total = adultos + criancas;
 
-        if (convidadoJaRespondeu) {
+        btn.disabled = true;
+        btn.innerText = "Verificando...";
+
+        // Checagem final obrigatória no momento do envio
+        const jaRespondeu = await buscarRestricao();
+        if (jaRespondeu) {
             alert("Convite respondido, falar com Jana ou Endreo");
+            btn.innerText = "Confirmar Presença";
             return;
         }
 
         if (presenca === "Sim") {
             if (total > limitePermitido) {
                 alert(`A quantidade total (${total}) excede o seu limite permitido de ${limitePermitido} pessoa(s).`);
+                btn.disabled = false;
+                btn.innerText = "Confirmar Presença";
                 return;
             }
             if (total < 1) {
                 alert("Por favor, selecione ao menos 1 adulto ou criança.");
+                btn.disabled = false;
+                btn.innerText = "Confirmar Presença";
                 return;
             }
         }
 
-        btn.disabled = true;
         btn.innerText = "Enviando...";
 
         try {
@@ -253,7 +261,7 @@
                 })
             });
 
-            alert("Confirmação processada com sucesso! Obrigado.");
+            alert("Resposta enviada com sucesso! Obrigado.");
             document.getElementById('rsvpForm').reset();
             document.getElementById('mensagemLimite').style.display = 'none';
         } catch (error) {
