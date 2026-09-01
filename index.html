@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
@@ -31,6 +32,11 @@
 
             --text-color: #2c3e2e;
 
+        }
+
+
+        * {
+            box-sizing: border-box;
         }
 
 
@@ -69,39 +75,43 @@
             background-color:
                 var(--card-bg);
 
-            border-radius: 16px;
+            border-radius:
+                16px;
 
             box-shadow:
                 0 10px 25px
-                rgba(0,0,0,0.1);
+                rgba(0,0,0,0.10);
 
-            max-width: 450px;
+            max-width:
+                450px;
 
-            width: 100%;
+            width:
+                100%;
 
-            padding: 28px;
-
-            box-sizing: border-box;
+            padding:
+                28px;
 
             border:
-                2px solid
-                #e0d6c3;
+                2px solid #e0d6c3;
 
         }
 
 
         .header {
 
-            text-align: center;
+            text-align:
+                center;
 
-            margin-bottom: 24px;
+            margin-bottom:
+                24px;
 
         }
 
 
         .header span {
 
-            font-size: 0.9rem;
+            font-size:
+                0.9rem;
 
             color:
                 var(--wood-brown);
@@ -109,9 +119,11 @@
             text-transform:
                 uppercase;
 
-            letter-spacing: 2px;
+            letter-spacing:
+                2px;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
         }
 
@@ -124,7 +136,8 @@
             margin:
                 8px 0 4px 0;
 
-            font-size: 1.8rem;
+            font-size:
+                1.8rem;
 
         }
 
@@ -134,9 +147,11 @@
             color:
                 var(--accent-green);
 
-            margin: 0;
+            margin:
+                0;
 
-            font-weight: 600;
+            font-weight:
+                600;
 
         }
 
@@ -186,7 +201,8 @@
 
         label {
 
-            display: block;
+            display:
+                block;
 
             margin-bottom:
                 6px;
@@ -207,9 +223,11 @@
         input[type="number"],
         select {
 
-            width: 100%;
+            width:
+                100%;
 
-            padding: 12px;
+            padding:
+                12px;
 
             border:
                 1px solid #ccc;
@@ -217,14 +235,14 @@
             border-radius:
                 8px;
 
-            box-sizing:
-                border-box;
-
             font-size:
                 1rem;
 
             outline:
                 none;
+
+            background:
+                white;
 
         }
 
@@ -238,57 +256,79 @@
         }
 
 
+        input:disabled,
+        select:disabled {
+
+            background:
+                #eeeeee;
+
+        }
+
+
         .form-row {
 
-            display: flex;
+            display:
+                flex;
 
-            gap: 12px;
+            gap:
+                12px;
 
         }
 
 
         .form-row .form-group {
 
-            flex: 1;
+            flex:
+                1;
 
         }
 
 
-        .msg-limite {
+        .mensagem {
+
+            display:
+                none;
 
             font-size:
-                0.9rem;
-
-            margin-top:
-                6px;
+                0.92rem;
 
             margin-bottom:
-                15px;
-
-            font-weight:
-                600;
+                18px;
 
             padding:
-                10px;
+                12px;
 
             border-radius:
                 8px;
 
+            line-height:
+                1.45;
+
         }
 
 
-        .msg-normal {
+        .mensagem-normal {
+
+            display:
+                block;
 
             color:
-                var(--accent-green);
+                #355128;
 
             background:
                 #f1f8ee;
 
+            border-left:
+                4px solid
+                var(--accent-green);
+
         }
 
 
-        .erro-duplicado {
+        .mensagem-erro {
+
+            display:
+                block;
 
             color:
                 #b71c1c;
@@ -302,7 +342,10 @@
         }
 
 
-        .msg-sucesso {
+        .mensagem-sucesso {
+
+            display:
+                block;
 
             color:
                 #1b5e20;
@@ -318,16 +361,20 @@
 
         .btn-submit {
 
-            width: 100%;
+            width:
+                100%;
 
             background-color:
                 var(--primary-green);
 
-            color: white;
+            color:
+                white;
 
-            border: none;
+            border:
+                none;
 
-            padding: 14px;
+            padding:
+                14px;
 
             border-radius:
                 8px;
@@ -342,7 +389,7 @@
                 pointer;
 
             margin-top:
-                10px;
+                6px;
 
         }
 
@@ -358,7 +405,7 @@
         .btn-submit:disabled {
 
             background-color:
-                #a0a0a0;
+                #999;
 
             cursor:
                 not-allowed;
@@ -366,10 +413,71 @@
         }
 
 
-        .bloqueado {
+        .resposta-final {
 
-            opacity:
-                0.6;
+            display:
+                none;
+
+            text-align:
+                center;
+
+            padding:
+                22px 10px;
+
+        }
+
+
+        .resposta-final .icone {
+
+            font-size:
+                3rem;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .resposta-final h2 {
+
+            color:
+                var(--primary-green);
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .resposta-final p {
+
+            line-height:
+                1.5;
+
+            color:
+                #4b4b4b;
+
+        }
+
+
+        @media (
+            max-width: 480px
+        ) {
+
+            body {
+
+                padding:
+                    12px;
+
+            }
+
+
+            .card {
+
+                padding:
+                    22px;
+
+            }
 
         }
 
@@ -421,6 +529,8 @@
     </div>
 
 
+    <!-- FORMULÁRIO -->
+
     <form id="rsvpForm">
 
 
@@ -434,17 +544,16 @@
                 type="text"
                 id="nome"
                 placeholder="Digite seu nome"
-                required
                 autocomplete="off"
+                required
             >
 
         </div>
 
 
         <div
-            id="mensagemLimite"
-            class="msg-limite"
-            style="display:none;"
+            id="mensagem"
+            class="mensagem"
         >
         </div>
 
@@ -482,6 +591,7 @@
 
             <div id="camposQuantidade">
 
+
                 <div class="form-row">
 
 
@@ -494,7 +604,7 @@
                         <input
                             type="number"
                             id="adultos"
-                            min="1"
+                            min="0"
                             value="1"
                             required
                         >
@@ -521,13 +631,14 @@
 
                 </div>
 
+
             </div>
 
 
             <button
                 type="submit"
-                class="btn-submit"
                 id="btnConfirmar"
+                class="btn-submit"
             >
 
                 Confirmar Presença
@@ -539,6 +650,30 @@
 
 
     </form>
+
+
+    <!-- RESPOSTA FINAL -->
+
+    <div
+        id="respostaFinal"
+        class="resposta-final"
+    >
+
+        <div
+            id="iconeFinal"
+            class="icone"
+        >
+            🎉
+        </div>
+
+        <h2 id="tituloFinal">
+            Resposta registrada!
+        </h2>
+
+        <p id="textoFinal">
+        </p>
+
+    </div>
 
 
 </div>
@@ -555,16 +690,98 @@ const URL_WEB_APP =
 "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec";
 
 
+// =====================================================
+// VARIÁVEIS
+// =====================================================
+
 let limitePermitido = 1;
 
 let conviteBloqueado = false;
 
 
 // =====================================================
-// NORMALIZAÇÃO
+// ELEMENTOS
+// =====================================================
+
+const form =
+    document.getElementById(
+        "rsvpForm"
+    );
+
+
+const nomeInput =
+    document.getElementById(
+        "nome"
+    );
+
+
+const presencaInput =
+    document.getElementById(
+        "presenca"
+    );
+
+
+const adultosInput =
+    document.getElementById(
+        "adultos"
+    );
+
+
+const criancasInput =
+    document.getElementById(
+        "criancas"
+    );
+
+
+const camposQuantidade =
+    document.getElementById(
+        "camposQuantidade"
+    );
+
+
+const btnConfirmar =
+    document.getElementById(
+        "btnConfirmar"
+    );
+
+
+const mensagemDiv =
+    document.getElementById(
+        "mensagem"
+    );
+
+
+const respostaFinal =
+    document.getElementById(
+        "respostaFinal"
+    );
+
+
+const tituloFinal =
+    document.getElementById(
+        "tituloFinal"
+    );
+
+
+const textoFinal =
+    document.getElementById(
+        "textoFinal"
+    );
+
+
+const iconeFinal =
+    document.getElementById(
+        "iconeFinal"
+    );
+
+
+// =====================================================
+// NORMALIZAR TEXTO
 // =====================================================
 
 function normalizarTextoLocal(texto) {
+
+    if (!texto) return "";
 
     return texto
 
@@ -582,152 +799,270 @@ function normalizarTextoLocal(texto) {
 
 
 // =====================================================
-// EXIBE MENSAGEM
+// ESPERAR
+// =====================================================
+
+function esperar(ms) {
+
+    return new Promise(
+
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
+
+    );
+}
+
+
+// =====================================================
+// MENSAGENS
 // =====================================================
 
 function mostrarMensagem(
-    mensagem,
-    tipo
+    texto,
+    tipo = "normal"
 ) {
 
-    const msgDiv =
-        document.getElementById(
-            "mensagemLimite"
+    mensagemDiv.innerHTML =
+        texto;
+
+
+    if (
+        tipo === "erro"
+    ) {
+
+        mensagemDiv.className =
+            "mensagem mensagem-erro";
+
+    }
+
+    else if (
+        tipo === "sucesso"
+    ) {
+
+        mensagemDiv.className =
+            "mensagem mensagem-sucesso";
+
+    }
+
+    else {
+
+        mensagemDiv.className =
+            "mensagem mensagem-normal";
+
+    }
+}
+
+
+function esconderMensagem() {
+
+    mensagemDiv.style.display =
+        "none";
+
+}
+
+
+// =====================================================
+// CONSULTAR APPS SCRIPT
+// =====================================================
+
+async function consultarConvidado(
+    nome
+) {
+
+    const nomeNormalizado =
+        normalizarTextoLocal(
+            nome
         );
 
 
-    msgDiv.style.display =
+    const url =
+
+        `${URL_WEB_APP}` +
+
+        `?nome=${encodeURIComponent(
+            nomeNormalizado
+        )}` +
+
+        `&t=${Date.now()}`;
+
+
+    const resposta =
+        await fetch(
+            url,
+            {
+                cache:
+                    "no-store"
+            }
+        );
+
+
+    if (!resposta.ok) {
+
+        throw new Error(
+            "Erro na consulta."
+        );
+    }
+
+
+    return await
+        resposta.json();
+}
+
+
+// =====================================================
+// MOSTRAR RESPOSTA FINAL
+// =====================================================
+
+function mostrarRespostaFinal(
+    nome,
+    presenca
+) {
+
+    form.style.display =
+        "none";
+
+
+    respostaFinal.style.display =
         "block";
 
 
-    if (tipo === "erro") {
+    if (
+        presenca === "Nao"
+    ) {
 
-        msgDiv.className =
-            "msg-limite erro-duplicado";
+        iconeFinal.innerText =
+            "💚";
 
-    }
 
-    else if (tipo === "sucesso") {
+        tituloFinal.innerText =
+            "Resposta registrada!";
 
-        msgDiv.className =
-            "msg-limite msg-sucesso";
+
+        textoFinal.innerHTML =
+
+            `Obrigado por responder, <strong>${nome}</strong>.<br><br>` +
+
+            `Sentiremos sua falta na comemoração do Daniel.<br><br>` +
+
+            `<small>Se precisar alterar sua resposta, fale com Jana ou Endreo.</small>`;
 
     }
 
     else {
 
-        msgDiv.className =
-            "msg-limite msg-normal";
+        iconeFinal.innerText =
+            "🎉";
+
+
+        tituloFinal.innerText =
+            "Presença confirmada!";
+
+
+        textoFinal.innerHTML =
+
+            `Obrigado, <strong>${nome}</strong>!<br><br>` +
+
+            `Sua presença foi registrada com sucesso.<br>` +
+
+            `Estamos esperando vocês para comemorar o primeiro aninho do Daniel! 🐾<br><br>` +
+
+            `<small>Se precisar alterar sua resposta, fale com Jana ou Endreo.</small>`;
 
     }
-
-
-    msgDiv.innerHTML =
-        mensagem;
 }
 
 
 // =====================================================
-// BLOQUEIA / LIBERA FORMULÁRIO
+// BLOQUEAR CONVIDADO QUE JÁ RESPONDEU
 // =====================================================
 
-function bloquearFormulario(
-    bloquear
+function mostrarJaRespondido(
+    nome,
+    presenca
 ) {
 
     conviteBloqueado =
-        bloquear;
+        true;
 
 
-    const area =
-        document.getElementById(
-            "areaResposta"
-        );
+    presencaInput.disabled =
+        true;
 
 
-    const btn =
-        document.getElementById(
-            "btnConfirmar"
-        );
+    adultosInput.disabled =
+        true;
 
 
-    const presenca =
-        document.getElementById(
-            "presenca"
-        );
+    criancasInput.disabled =
+        true;
 
 
-    const adultos =
-        document.getElementById(
-            "adultos"
-        );
+    btnConfirmar.disabled =
+        true;
 
 
-    const criancas =
-        document.getElementById(
-            "criancas"
-        );
+    btnConfirmar.innerText =
+        "Convite já respondido";
 
 
-    btn.disabled =
-        bloquear;
+    let textoResposta = "";
 
 
-    presenca.disabled =
-        bloquear;
+    if (
+        presenca === "Nao"
+    ) {
 
-
-    adultos.disabled =
-        bloquear;
-
-
-    criancas.disabled =
-        bloquear;
-
-
-    if (bloquear) {
-
-        area.classList.add(
-            "bloqueado"
-        );
+        textoResposta =
+            "Você informou que não poderá comparecer.";
 
     }
 
     else {
 
-        area.classList.remove(
-            "bloqueado"
-        );
+        textoResposta =
+            "Sua presença já está confirmada.";
 
     }
+
+
+    mostrarMensagem(
+
+        `⚠️ <strong>Este convite já foi respondido.</strong><br><br>` +
+
+        `${textoResposta}<br><br>` +
+
+        `Para alterar a resposta, fale com Jana ou Endreo.`,
+
+        "erro"
+
+    );
 }
 
 
 // =====================================================
-// CONSULTA CONVIDADO
+// BUSCAR RESTRIÇÃO
 // =====================================================
 
 async function buscarRestricao() {
 
-
-    const nomeInput =
-        document
-            .getElementById(
-                "nome"
-            )
+    const nome =
+        nomeInput
             .value
             .trim();
 
 
-    if (nomeInput.length < 3) {
+    if (
+        nome.length < 3
+    ) {
 
         return {
-
-            valido: false,
-
-            jaRespondeu: false
-
+            valido:
+                false
         };
+
     }
 
 
@@ -737,79 +1072,74 @@ async function buscarRestricao() {
     );
 
 
+    btnConfirmar.disabled =
+        true;
+
+
     try {
 
-
-        const url =
-
-            `${URL_WEB_APP}` +
-
-            `?nome=${encodeURIComponent(
-                normalizarTextoLocal(
-                    nomeInput
-                )
-            )}` +
-
-            `&t=${Date.now()}`;
-
-
-        const resposta =
-            await fetch(
-                url,
-                {
-                    cache:
-                        "no-store"
-                }
-            );
-
-
         const data =
-            await resposta.json();
+            await consultarConvidado(
+                nome
+            );
 
 
         // ---------------------------------------------
         // JÁ RESPONDEU
         // ---------------------------------------------
 
-        if (data.jaRespondeu) {
+        if (
+            data.jaRespondeu
+        ) {
 
-
-            bloquearFormulario(
-                true
-            );
-
-
-            mostrarMensagem(
-
-                "⚠️ <strong>Este convite já foi respondido.</strong><br>" +
-                "Para alterar a resposta, fale com Jana ou Endreo.",
-
-                "erro"
-
+            mostrarJaRespondido(
+                nome,
+                data.presenca
             );
 
 
             return {
 
-                valido: true,
+                valido:
+                    true,
 
-                jaRespondeu: true
+                jaRespondeu:
+                    true,
+
+                presenca:
+                    data.presenca
 
             };
         }
 
 
         // ---------------------------------------------
-        // AINDA NÃO RESPONDEU
+        // NÃO RESPONDEU
         // ---------------------------------------------
 
-        bloquearFormulario(
-            false
-        );
+        conviteBloqueado =
+            false;
 
 
-        if (data.encontrado) {
+        presencaInput.disabled =
+            false;
 
+
+        adultosInput.disabled =
+            false;
+
+
+        criancasInput.disabled =
+            false;
+
+
+        btnConfirmar.disabled =
+            false;
+
+
+        if (
+            data.encontrado
+        ) {
 
             limitePermitido =
                 parseInt(
@@ -819,10 +1149,11 @@ async function buscarRestricao() {
 
             mostrarMensagem(
 
-                "🌟 Convite localizado! " +
-                "Você pode confirmar até " +
-                `<strong>${limitePermitido} pessoa(s)</strong> ` +
-                "no total.",
+                `🌟 Convite localizado! ` +
+
+                `Você pode confirmar até ` +
+
+                `<strong>${limitePermitido} pessoa(s)</strong> no total.`,
 
                 "normal"
 
@@ -832,14 +1163,15 @@ async function buscarRestricao() {
 
         else {
 
-
-            limitePermitido = 1;
+            limitePermitido =
+                1;
 
 
             mostrarMensagem(
 
-                "⚠️ Nome não localizado na lista de convites. " +
-                "Limite padrão: 1 pessoa.",
+                `⚠️ Nome não localizado na lista de convidados.<br>` +
+
+                `O limite padrão será de 1 pessoa.`,
 
                 "normal"
 
@@ -850,24 +1182,25 @@ async function buscarRestricao() {
 
         return {
 
-            valido: true,
+            valido:
+                true,
 
-            jaRespondeu: false,
-
-            limite:
-                limitePermitido
+            jaRespondeu:
+                false
 
         };
-
 
     }
 
     catch (erro) {
 
-
         console.error(
             erro
         );
+
+
+        btnConfirmar.disabled =
+            false;
 
 
         mostrarMensagem(
@@ -881,462 +1214,485 @@ async function buscarRestricao() {
 
         return {
 
-            valido: false,
-
-            jaRespondeu: false
+            valido:
+                false
 
         };
-
     }
-
 }
 
 
 // =====================================================
-// ALTEROU O NOME
+// CONFIRMAR GRAVAÇÃO
 // =====================================================
 
-document
-    .getElementById(
-        "nome"
-    )
-    .addEventListener(
-        "input",
-        function() {
+async function confirmarRegistro(
+    nome
+) {
+
+    // Faz várias tentativas porque o Google
+    // pode levar alguns segundos para refletir
+    // a nova linha em uma nova consulta.
+
+    for (
+        let tentativa = 1;
+        tentativa <= 8;
+        tentativa++
+    ) {
+
+        await esperar(
+            900
+        );
 
 
-            bloquearFormulario(
-                false
-            );
+        try {
 
-
-            const msg =
-                document.getElementById(
-                    "mensagemLimite"
+            const resultado =
+                await consultarConvidado(
+                    nome
                 );
 
 
-            msg.style.display =
-                "none";
+            if (
+                resultado.jaRespondeu
+            ) {
 
+                return {
 
-            limitePermitido =
-                1;
+                    confirmado:
+                        true,
+
+                    dados:
+                        resultado
+
+                };
+            }
 
         }
-    );
+
+        catch (erro) {
+
+            console.log(
+                "Tentativa " +
+                tentativa +
+                " ainda não confirmou."
+            );
+
+        }
+    }
+
+
+    return {
+
+        confirmado:
+            false
+
+    };
+}
 
 
 // =====================================================
-// SAIU DO CAMPO NOME
+// ALTERAÇÃO DO NOME
 // =====================================================
 
-document
-    .getElementById(
-        "nome"
-    )
-    .addEventListener(
-        "blur",
-        buscarRestricao
-    );
+nomeInput.addEventListener(
+    "input",
+    function() {
+
+        conviteBloqueado =
+            false;
+
+
+        limitePermitido =
+            1;
+
+
+        presencaInput.disabled =
+            false;
+
+
+        adultosInput.disabled =
+            false;
+
+
+        criancasInput.disabled =
+            false;
+
+
+        btnConfirmar.disabled =
+            false;
+
+
+        btnConfirmar.innerText =
+            "Confirmar Presença";
+
+
+        mensagemDiv.style.display =
+            "none";
+
+    }
+);
+
+
+// =====================================================
+// AO SAIR DO CAMPO NOME
+// =====================================================
+
+nomeInput.addEventListener(
+    "blur",
+    buscarRestricao
+);
 
 
 // =====================================================
 // SIM / NÃO
 // =====================================================
 
-document
-    .getElementById(
-        "presenca"
-    )
-    .addEventListener(
-        "change",
-        function() {
+presencaInput.addEventListener(
+    "change",
+    function() {
 
+        if (
+            this.value === "Sim"
+        ) {
 
-            document
-                .getElementById(
-                    "camposQuantidade"
-                )
-                .style
-                .display =
-
-                    this.value === "Sim"
-
-                        ? "block"
-
-                        : "none";
+            camposQuantidade.style.display =
+                "block";
 
         }
-    );
+
+        else {
+
+            camposQuantidade.style.display =
+                "none";
+
+        }
+
+    }
+);
 
 
 // =====================================================
 // ENVIO
 // =====================================================
 
-document
-    .getElementById(
-        "rsvpForm"
-    )
-    .addEventListener(
-        "submit",
-        async function(e) {
+form.addEventListener(
+    "submit",
+    async function(evento) {
+
+        evento.preventDefault();
 
 
-            e.preventDefault();
+        if (
+            conviteBloqueado
+        ) {
+
+            return;
+        }
 
 
-            if (conviteBloqueado) {
-
-                return;
-            }
-
-
-            const btn =
-                document.getElementById(
-                    "btnConfirmar"
-                );
+        const nome =
+            nomeInput
+                .value
+                .trim();
 
 
-            const nomeCompleto =
-                document
-                    .getElementById(
-                        "nome"
-                    )
-                    .value
-                    .trim();
+        const presenca =
+            presencaInput.value;
 
 
-            const presenca =
-                document
-                    .getElementById(
-                        "presenca"
-                    )
-                    .value;
+        const adultos =
+            parseInt(
+                adultosInput.value
+            ) || 0;
 
 
-            const adultos =
-                parseInt(
-                    document
-                        .getElementById(
-                            "adultos"
-                        )
-                        .value
-                ) || 0;
+        const criancas =
+            parseInt(
+                criancasInput.value
+            ) || 0;
 
 
-            const criancas =
-                parseInt(
-                    document
-                        .getElementById(
-                            "criancas"
-                        )
-                        .value
-                ) || 0;
+        const total =
+            adultos +
+            criancas;
 
 
-            const total =
-                adultos +
-                criancas;
+        // ---------------------------------------------
+        // NOME
+        // ---------------------------------------------
 
+        if (
+            nome.length < 3
+        ) {
+
+            alert(
+                "Digite seu nome."
+            );
+
+            nomeInput.focus();
+
+            return;
+        }
+
+
+        // ---------------------------------------------
+        // CONSULTA FINAL
+        // ---------------------------------------------
+
+        btnConfirmar.disabled =
+            true;
+
+
+        btnConfirmar.innerText =
+            "Verificando...";
+
+
+        const verificacaoInicial =
+            await buscarRestricao();
+
+
+        if (
+            !verificacaoInicial.valido
+        ) {
+
+            btnConfirmar.disabled =
+                false;
+
+
+            btnConfirmar.innerText =
+                "Confirmar Presença";
+
+
+            return;
+        }
+
+
+        if (
+            verificacaoInicial.jaRespondeu
+        ) {
+
+            return;
+        }
+
+
+        // ---------------------------------------------
+        // VALIDAR QUANTIDADE
+        // ---------------------------------------------
+
+        if (
+            presenca === "Sim"
+        ) {
 
             if (
-                nomeCompleto.length < 3
+                total < 1
             ) {
 
                 alert(
-                    "Digite seu nome."
+                    "Informe pelo menos uma pessoa."
                 );
 
-                return;
-            }
 
-
-            btn.disabled =
-                true;
-
-
-            btn.innerText =
-                "Verificando...";
-
-
-            // -----------------------------------------
-            // VERIFICA NOVAMENTE ANTES DO ENVIO
-            // -----------------------------------------
-
-            const consulta =
-                await buscarRestricao();
-
-
-            if (
-                !consulta.valido
-            ) {
-
-                btn.disabled =
+                btnConfirmar.disabled =
                     false;
 
-                btn.innerText =
+
+                btnConfirmar.innerText =
                     "Confirmar Presença";
+
 
                 return;
             }
 
 
             if (
-                consulta.jaRespondeu
+                total >
+                limitePermitido
             ) {
 
-                btn.innerText =
-                    "Convite já respondido";
+                alert(
+
+                    `A quantidade informada (${total}) ` +
+
+                    `é maior que o limite do seu convite (${limitePermitido}).`
+
+                );
+
+
+                btnConfirmar.disabled =
+                    false;
+
+
+                btnConfirmar.innerText =
+                    "Confirmar Presença";
+
 
                 return;
-            }
-
-
-            // -----------------------------------------
-            // VALIDA QUANTIDADE
-            // -----------------------------------------
-
-            if (
-                presenca === "Sim"
-            ) {
-
-
-                if (
-                    total >
-                    limitePermitido
-                ) {
-
-                    alert(
-
-                        `A quantidade total (${total}) ` +
-
-                        `excede o limite permitido de ` +
-
-                        `${limitePermitido} pessoa(s).`
-
-                    );
-
-
-                    btn.disabled =
-                        false;
-
-
-                    btn.innerText =
-                        "Confirmar Presença";
-
-
-                    return;
-                }
-
-
-                if (
-                    total < 1
-                ) {
-
-
-                    alert(
-
-                        "Selecione ao menos 1 adulto ou criança."
-
-                    );
-
-
-                    btn.disabled =
-                        false;
-
-
-                    btn.innerText =
-                        "Confirmar Presença";
-
-
-                    return;
-                }
-
-            }
-
-
-            btn.innerText =
-                "Enviando...";
-
-
-            try {
-
-
-                // -------------------------------------
-                // ENVIA AO APPS SCRIPT
-                // -------------------------------------
-
-                await fetch(
-                    URL_WEB_APP,
-                    {
-
-                        method:
-                            "POST",
-
-                        mode:
-                            "no-cors",
-
-                        headers: {
-
-                            "Content-Type":
-                                "text/plain;charset=utf-8"
-
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                nome:
-                                    nomeCompleto,
-
-                                presenca:
-                                    presenca,
-
-                                adultos:
-
-                                    presenca === "Sim"
-                                        ? adultos
-                                        : 0,
-
-                                criancas:
-
-                                    presenca === "Sim"
-                                        ? criancas
-                                        : 0
-
-                            })
-
-                    }
-                );
-
-
-                // -------------------------------------
-                // CONFIRMA SE REALMENTE FOI GRAVADO
-                // -------------------------------------
-
-                btn.innerText =
-                    "Confirmando...";
-
-
-                const urlVerificacao =
-
-                    `${URL_WEB_APP}` +
-
-                    `?nome=${encodeURIComponent(
-                        normalizarTextoLocal(
-                            nomeCompleto
-                        )
-                    )}` +
-
-                    `&t=${Date.now()}`;
-
-
-                const verificacao =
-                    await fetch(
-
-                        urlVerificacao,
-
-                        {
-
-                            cache:
-                                "no-store"
-
-                        }
-
-                    );
-
-
-                const resultado =
-                    await verificacao.json();
-
-
-                // -------------------------------------
-                // RESPOSTA GRAVADA
-                // -------------------------------------
-
-                if (
-                    resultado.jaRespondeu
-                ) {
-
-
-                    bloquearFormulario(
-                        true
-                    );
-
-
-                    mostrarMensagem(
-
-                        "✅ <strong>Resposta registrada com sucesso!</strong><br>" +
-                        "Obrigado por responder ao convite do Daniel. 🎉",
-
-                        "sucesso"
-
-                    );
-
-
-                    btn.innerText =
-                        "Resposta registrada";
-
-
-                    return;
-                }
-
-
-                // -------------------------------------
-                // NÃO FOI POSSÍVEL CONFIRMAR
-                // -------------------------------------
-
-                mostrarMensagem(
-
-                    "Não foi possível confirmar o registro da resposta. " +
-                    "Tente novamente.",
-
-                    "erro"
-
-                );
-
-
-                btn.disabled =
-                    false;
-
-
-                btn.innerText =
-                    "Confirmar Presença";
-
-
-            }
-
-            catch (erro) {
-
-
-                console.error(
-                    erro
-                );
-
-
-                mostrarMensagem(
-
-                    "Ocorreu um erro ao salvar sua resposta. " +
-                    "Tente novamente.",
-
-                    "erro"
-
-                );
-
-
-                btn.disabled =
-                    false;
-
-
-                btn.innerText =
-                    "Confirmar Presença";
-
             }
 
         }
-    );
+
+
+        // ---------------------------------------------
+        // ENVIO
+        // ---------------------------------------------
+
+        btnConfirmar.disabled =
+            true;
+
+
+        btnConfirmar.innerText =
+            "Enviando...";
+
+
+        mostrarMensagem(
+
+            "⏳ Registrando sua resposta...",
+
+            "normal"
+
+        );
+
+
+        try {
+
+            await fetch(
+                URL_WEB_APP,
+                {
+
+                    method:
+                        "POST",
+
+                    mode:
+                        "no-cors",
+
+                    headers: {
+
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            nome:
+                                nome,
+
+                            presenca:
+                                presenca,
+
+                            adultos:
+                                presenca === "Sim"
+                                    ? adultos
+                                    : 0,
+
+                            criancas:
+                                presenca === "Sim"
+                                    ? criancas
+                                    : 0
+
+                        })
+
+                }
+            );
+
+
+            // -----------------------------------------
+            // AGORA AGUARDA O GOOGLE CONFIRMAR
+            // -----------------------------------------
+
+            btnConfirmar.innerText =
+                "Confirmando...";
+
+
+            mostrarMensagem(
+
+                "⏳ Resposta enviada. Confirmando o registro...",
+
+                "normal"
+
+            );
+
+
+            const resultado =
+                await confirmarRegistro(
+                    nome
+                );
+
+
+            // -----------------------------------------
+            // CONFIRMADO
+            // -----------------------------------------
+
+            if (
+                resultado.confirmado
+            ) {
+
+                mostrarRespostaFinal(
+
+                    nome,
+
+                    resultado.dados.presenca
+
+                );
+
+
+                return;
+            }
+
+
+            // -----------------------------------------
+            // NÃO CONFIRMOU APÓS AS TENTATIVAS
+            // -----------------------------------------
+
+            mostrarMensagem(
+
+                "⚠️ Sua resposta foi enviada, mas o sistema ainda não conseguiu confirmar automaticamente o registro.<br><br>" +
+
+                "Aguarde alguns segundos e digite seu nome novamente antes de tentar outro envio.",
+
+                "erro"
+
+            );
+
+
+            btnConfirmar.disabled =
+                false;
+
+
+            btnConfirmar.innerText =
+                "Verificar novamente";
+
+        }
+
+        catch (erro) {
+
+            console.error(
+                erro
+            );
+
+
+            mostrarMensagem(
+
+                "Ocorreu um erro de comunicação. Verifique sua conexão e tente novamente.",
+
+                "erro"
+
+            );
+
+
+            btnConfirmar.disabled =
+                false;
+
+
+            btnConfirmar.innerText =
+                "Confirmar Presença";
+
+        }
+
+    }
+);
 
 
 </script>
