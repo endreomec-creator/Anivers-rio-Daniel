@@ -1,278 +1,1347 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação de Presença - Aniversário do Daniel</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Confirmação de Presença - Aniversário do Daniel
+    </title>
+
+
     <style>
+
         :root {
+
             --bg-color: #f4efe6;
+
             --primary-green: #3d5a32;
+
             --accent-green: #587947;
+
             --wood-brown: #5c4033;
+
             --card-bg: #ffffff;
+
             --text-color: #2c3e2e;
+
         }
+
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+
+            font-family:
+                'Segoe UI',
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            background-color:
+                var(--bg-color);
+
+            color:
+                var(--text-color);
+
             margin: 0;
+
             padding: 20px;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             min-height: 100vh;
+
         }
+
 
         .card {
-            background-color: var(--card-bg);
+
+            background-color:
+                var(--card-bg);
+
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.1);
+
             max-width: 450px;
+
             width: 100%;
+
             padding: 28px;
+
             box-sizing: border-box;
-            border: 2px solid #e0d6c3;
+
+            border:
+                2px solid
+                #e0d6c3;
+
         }
 
-        .header { text-align: center; margin-bottom: 24px; }
-        .header span { font-size: 0.9rem; color: var(--wood-brown); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
-        .header h1 { color: var(--primary-green); margin: 8px 0 4px 0; font-size: 1.8rem; }
-        .header p { color: var(--accent-green); margin: 0; font-weight: 600; }
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .header span {
+
+            font-size: 0.9rem;
+
+            color:
+                var(--wood-brown);
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: 2px;
+
+            font-weight: bold;
+
+        }
+
+
+        .header h1 {
+
+            color:
+                var(--primary-green);
+
+            margin:
+                8px 0 4px 0;
+
+            font-size: 1.8rem;
+
+        }
+
+
+        .header p {
+
+            color:
+                var(--accent-green);
+
+            margin: 0;
+
+            font-weight: 600;
+
+        }
+
 
         .details-box {
-            background-color: #f9f6f0;
-            border-left: 4px solid var(--primary-green);
-            padding: 12px 16px;
-            border-radius: 6px;
-            margin-bottom: 24px;
-            font-size: 0.95rem;
+
+            background-color:
+                #f9f6f0;
+
+            border-left:
+                4px solid
+                var(--primary-green);
+
+            padding:
+                12px 16px;
+
+            border-radius:
+                6px;
+
+            margin-bottom:
+                24px;
+
+            font-size:
+                0.95rem;
+
         }
-        .details-box p { margin: 6px 0; color: #4a4a4a; }
 
-        .form-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 6px; font-weight: bold; color: var(--primary-green); font-size: 0.95rem; }
 
-        input[type="text"], input[type="number"], select {
+        .details-box p {
+
+            margin:
+                6px 0;
+
+            color:
+                #4a4a4a;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom:
+                18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom:
+                6px;
+
+            font-weight:
+                bold;
+
+            color:
+                var(--primary-green);
+
+            font-size:
+                0.95rem;
+
+        }
+
+
+        input[type="text"],
+        input[type="number"],
+        select {
+
             width: 100%;
+
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
+
+            border:
+                1px solid #ccc;
+
+            border-radius:
+                8px;
+
+            box-sizing:
+                border-box;
+
+            font-size:
+                1rem;
+
+            outline:
+                none;
+
         }
 
-        input[type="text"]:focus, input[type="number"]:focus, select:focus { border-color: var(--primary-green); }
 
-        .form-row { display: flex; gap: 12px; }
-        .form-row .form-group { flex: 1; }
+        input:focus,
+        select:focus {
+
+            border-color:
+                var(--primary-green);
+
+        }
+
+
+        .form-row {
+
+            display: flex;
+
+            gap: 12px;
+
+        }
+
+
+        .form-row .form-group {
+
+            flex: 1;
+
+        }
+
 
         .msg-limite {
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            margin-top: 6px;
-            font-weight: 600;
+
+            font-size:
+                0.9rem;
+
+            margin-top:
+                6px;
+
+            margin-bottom:
+                15px;
+
+            font-weight:
+                600;
+
+            padding:
+                10px;
+
+            border-radius:
+                8px;
+
         }
+
+
+        .msg-normal {
+
+            color:
+                var(--accent-green);
+
+            background:
+                #f1f8ee;
+
+        }
+
 
         .erro-duplicado {
-            color: #d32f2f;
-            background: #ffebee;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 10px;
+
+            color:
+                #b71c1c;
+
+            background:
+                #ffebee;
+
+            border-left:
+                4px solid #d32f2f;
+
         }
+
+
+        .msg-sucesso {
+
+            color:
+                #1b5e20;
+
+            background:
+                #e8f5e9;
+
+            border-left:
+                4px solid #388e3c;
+
+        }
+
 
         .btn-submit {
+
             width: 100%;
-            background-color: var(--primary-green);
+
+            background-color:
+                var(--primary-green);
+
             color: white;
+
             border: none;
+
             padding: 14px;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                1.05rem;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            margin-top:
+                10px;
+
         }
 
-        .btn-submit:hover { background-color: var(--accent-green); }
-        .btn-submit:disabled { background-color: #a0a0a0; cursor: not-allowed; }
+
+        .btn-submit:hover {
+
+            background-color:
+                var(--accent-green);
+
+        }
+
+
+        .btn-submit:disabled {
+
+            background-color:
+                #a0a0a0;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .bloqueado {
+
+            opacity:
+                0.6;
+
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
+
 <div class="card">
+
+
     <div class="header">
-        <span>Aventuras no Bosque</span>
-        <h1>Daniel - 1 Aninho</h1>
-        <p>Venha comemorar conosco!</p>
+
+        <span>
+            Aventuras no Bosque
+        </span>
+
+        <h1>
+            Daniel - 1 Aninho
+        </h1>
+
+        <p>
+            Venha comemorar conosco!
+        </p>
+
     </div>
+
 
     <div class="details-box">
-        <p>📅 <strong>Data:</strong> 26/09/2026</p>
-        <p>🕒 <strong>Horário:</strong> 13h às 16h</p>
-        <p>📍 <strong>Local:</strong> GameStation - Shopping Patteo L3</p>
+
+        <p>
+            📅 <strong>Data:</strong>
+            26/09/2026
+        </p>
+
+        <p>
+            🕒 <strong>Horário:</strong>
+            13h às 16h
+        </p>
+
+        <p>
+            📍 <strong>Local:</strong>
+            GameStation - Shopping Patteo L3
+        </p>
+
     </div>
 
+
     <form id="rsvpForm">
-        <div class="form-group">
-            <label for="nome">Seu Nome:</label>
-            <input type="text" id="nome" placeholder="Digite seu primeiro nome" required>
-        </div>
 
-        <div id="mensagemLimite" class="msg-limite" style="display:none; margin-bottom: 15px;"></div>
 
         <div class="form-group">
-            <label for="presenca">Você irá ao evento?</label>
-            <select id="presenca" required>
-                <option value="Sim">Sim, estarei lá! 🐾</option>
-                <option value="Nao">Infelizmente não poderei ir</option>
-            </select>
+
+            <label for="nome">
+                Seu Nome:
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                placeholder="Digite seu nome"
+                required
+                autocomplete="off"
+            >
+
         </div>
 
-        <div id="camposQuantidade">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="adultos">Adultos:</label>
-                    <input type="number" id="adultos" min="1" value="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="criancas">Crianças:</label>
-                    <input type="number" id="criancas" min="0" value="0" required>
-                </div>
+
+        <div
+            id="mensagemLimite"
+            class="msg-limite"
+            style="display:none;"
+        >
+        </div>
+
+
+        <div id="areaResposta">
+
+
+            <div class="form-group">
+
+                <label for="presenca">
+                    Você irá ao evento?
+                </label>
+
+                <select
+                    id="presenca"
+                    required
+                >
+
+                    <option value="Sim">
+
+                        Sim, estarei lá! 🐾
+
+                    </option>
+
+                    <option value="Nao">
+
+                        Infelizmente não poderei ir
+
+                    </option>
+
+                </select>
+
             </div>
+
+
+            <div id="camposQuantidade">
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="adultos">
+                            Adultos:
+                        </label>
+
+                        <input
+                            type="number"
+                            id="adultos"
+                            min="1"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="criancas">
+                            Crianças:
+                        </label>
+
+                        <input
+                            type="number"
+                            id="criancas"
+                            min="0"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-submit"
+                id="btnConfirmar"
+            >
+
+                Confirmar Presença
+
+            </button>
+
+
         </div>
 
-        <button type="submit" class="btn-submit" id="btnConfirmar">Confirmar Presença</button>
+
     </form>
+
+
 </div>
 
+
 <script>
-    const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec"; 
 
-    let limitePermitido = 1;
 
-    function normalizarTextoLocal(texto) {
-        return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+// =====================================================
+// URL DO APPS SCRIPT
+// =====================================================
+
+const URL_WEB_APP =
+"https://script.google.com/macros/s/AKfycbzeLoprQjqOY8KFEiyZ6f-aq1FvvkUNfsUHWkjeqbsTUTqYoEYb9Lfl1IobmWdhBYPy/exec";
+
+
+let limitePermitido = 1;
+
+let conviteBloqueado = false;
+
+
+// =====================================================
+// NORMALIZAÇÃO
+// =====================================================
+
+function normalizarTextoLocal(texto) {
+
+    return texto
+
+        .toLowerCase()
+
+        .normalize("NFD")
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .trim();
+}
+
+
+// =====================================================
+// EXIBE MENSAGEM
+// =====================================================
+
+function mostrarMensagem(
+    mensagem,
+    tipo
+) {
+
+    const msgDiv =
+        document.getElementById(
+            "mensagemLimite"
+        );
+
+
+    msgDiv.style.display =
+        "block";
+
+
+    if (tipo === "erro") {
+
+        msgDiv.className =
+            "msg-limite erro-duplicado";
+
     }
 
-    async function buscarRestricao() {
-        const nomeInput = document.getElementById('nome').value.trim();
-        const msgDiv = document.getElementById('mensagemLimite');
-        const btn = document.getElementById('btnConfirmar');
+    else if (tipo === "sucesso") {
 
-        if (nomeInput.length >= 3) {
-            msgDiv.style.display = "block";
-            msgDiv.className = "msg-limite";
-            msgDiv.innerText = "Buscando convite...";
+        msgDiv.className =
+            "msg-limite msg-sucesso";
+
+    }
+
+    else {
+
+        msgDiv.className =
+            "msg-limite msg-normal";
+
+    }
+
+
+    msgDiv.innerHTML =
+        mensagem;
+}
+
+
+// =====================================================
+// BLOQUEIA / LIBERA FORMULÁRIO
+// =====================================================
+
+function bloquearFormulario(
+    bloquear
+) {
+
+    conviteBloqueado =
+        bloquear;
+
+
+    const area =
+        document.getElementById(
+            "areaResposta"
+        );
+
+
+    const btn =
+        document.getElementById(
+            "btnConfirmar"
+        );
+
+
+    const presenca =
+        document.getElementById(
+            "presenca"
+        );
+
+
+    const adultos =
+        document.getElementById(
+            "adultos"
+        );
+
+
+    const criancas =
+        document.getElementById(
+            "criancas"
+        );
+
+
+    btn.disabled =
+        bloquear;
+
+
+    presenca.disabled =
+        bloquear;
+
+
+    adultos.disabled =
+        bloquear;
+
+
+    criancas.disabled =
+        bloquear;
+
+
+    if (bloquear) {
+
+        area.classList.add(
+            "bloqueado"
+        );
+
+    }
+
+    else {
+
+        area.classList.remove(
+            "bloqueado"
+        );
+
+    }
+}
+
+
+// =====================================================
+// CONSULTA CONVIDADO
+// =====================================================
+
+async function buscarRestricao() {
+
+
+    const nomeInput =
+        document
+            .getElementById(
+                "nome"
+            )
+            .value
+            .trim();
+
+
+    if (nomeInput.length < 3) {
+
+        return {
+
+            valido: false,
+
+            jaRespondeu: false
+
+        };
+    }
+
+
+    mostrarMensagem(
+        "🔎 Buscando convite...",
+        "normal"
+    );
+
+
+    try {
+
+
+        const url =
+
+            `${URL_WEB_APP}` +
+
+            `?nome=${encodeURIComponent(
+                normalizarTextoLocal(
+                    nomeInput
+                )
+            )}` +
+
+            `&t=${Date.now()}`;
+
+
+        const resposta =
+            await fetch(
+                url,
+                {
+                    cache:
+                        "no-store"
+                }
+            );
+
+
+        const data =
+            await resposta.json();
+
+
+        // ---------------------------------------------
+        // JÁ RESPONDEU
+        // ---------------------------------------------
+
+        if (data.jaRespondeu) {
+
+
+            bloquearFormulario(
+                true
+            );
+
+
+            mostrarMensagem(
+
+                "⚠️ <strong>Este convite já foi respondido.</strong><br>" +
+                "Para alterar a resposta, fale com Jana ou Endreo.",
+
+                "erro"
+
+            );
+
+
+            return {
+
+                valido: true,
+
+                jaRespondeu: true
+
+            };
+        }
+
+
+        // ---------------------------------------------
+        // AINDA NÃO RESPONDEU
+        // ---------------------------------------------
+
+        bloquearFormulario(
+            false
+        );
+
+
+        if (data.encontrado) {
+
+
+            limitePermitido =
+                parseInt(
+                    data.limite
+                ) || 1;
+
+
+            mostrarMensagem(
+
+                "🌟 Convite localizado! " +
+                "Você pode confirmar até " +
+                `<strong>${limitePermitido} pessoa(s)</strong> ` +
+                "no total.",
+
+                "normal"
+
+            );
+
+        }
+
+        else {
+
+
+            limitePermitido = 1;
+
+
+            mostrarMensagem(
+
+                "⚠️ Nome não localizado na lista de convites. " +
+                "Limite padrão: 1 pessoa.",
+
+                "normal"
+
+            );
+
+        }
+
+
+        return {
+
+            valido: true,
+
+            jaRespondeu: false,
+
+            limite:
+                limitePermitido
+
+        };
+
+
+    }
+
+    catch (erro) {
+
+
+        console.error(
+            erro
+        );
+
+
+        mostrarMensagem(
+
+            "Não foi possível consultar a lista de convidados. Tente novamente.",
+
+            "erro"
+
+        );
+
+
+        return {
+
+            valido: false,
+
+            jaRespondeu: false
+
+        };
+
+    }
+
+}
+
+
+// =====================================================
+// ALTEROU O NOME
+// =====================================================
+
+document
+    .getElementById(
+        "nome"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+
+            bloquearFormulario(
+                false
+            );
+
+
+            const msg =
+                document.getElementById(
+                    "mensagemLimite"
+                );
+
+
+            msg.style.display =
+                "none";
+
+
+            limitePermitido =
+                1;
+
+        }
+    );
+
+
+// =====================================================
+// SAIU DO CAMPO NOME
+// =====================================================
+
+document
+    .getElementById(
+        "nome"
+    )
+    .addEventListener(
+        "blur",
+        buscarRestricao
+    );
+
+
+// =====================================================
+// SIM / NÃO
+// =====================================================
+
+document
+    .getElementById(
+        "presenca"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+
+            document
+                .getElementById(
+                    "camposQuantidade"
+                )
+                .style
+                .display =
+
+                    this.value === "Sim"
+
+                        ? "block"
+
+                        : "none";
+
+        }
+    );
+
+
+// =====================================================
+// ENVIO
+// =====================================================
+
+document
+    .getElementById(
+        "rsvpForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(e) {
+
+
+            e.preventDefault();
+
+
+            if (conviteBloqueado) {
+
+                return;
+            }
+
+
+            const btn =
+                document.getElementById(
+                    "btnConfirmar"
+                );
+
+
+            const nomeCompleto =
+                document
+                    .getElementById(
+                        "nome"
+                    )
+                    .value
+                    .trim();
+
+
+            const presenca =
+                document
+                    .getElementById(
+                        "presenca"
+                    )
+                    .value;
+
+
+            const adultos =
+                parseInt(
+                    document
+                        .getElementById(
+                            "adultos"
+                        )
+                        .value
+                ) || 0;
+
+
+            const criancas =
+                parseInt(
+                    document
+                        .getElementById(
+                            "criancas"
+                        )
+                        .value
+                ) || 0;
+
+
+            const total =
+                adultos +
+                criancas;
+
+
+            if (
+                nomeCompleto.length < 3
+            ) {
+
+                alert(
+                    "Digite seu nome."
+                );
+
+                return;
+            }
+
+
+            btn.disabled =
+                true;
+
+
+            btn.innerText =
+                "Verificando...";
+
+
+            // -----------------------------------------
+            // VERIFICA NOVAMENTE ANTES DO ENVIO
+            // -----------------------------------------
+
+            const consulta =
+                await buscarRestricao();
+
+
+            if (
+                !consulta.valido
+            ) {
+
+                btn.disabled =
+                    false;
+
+                btn.innerText =
+                    "Confirmar Presença";
+
+                return;
+            }
+
+
+            if (
+                consulta.jaRespondeu
+            ) {
+
+                btn.innerText =
+                    "Convite já respondido";
+
+                return;
+            }
+
+
+            // -----------------------------------------
+            // VALIDA QUANTIDADE
+            // -----------------------------------------
+
+            if (
+                presenca === "Sim"
+            ) {
+
+
+                if (
+                    total >
+                    limitePermitido
+                ) {
+
+                    alert(
+
+                        `A quantidade total (${total}) ` +
+
+                        `excede o limite permitido de ` +
+
+                        `${limitePermitido} pessoa(s).`
+
+                    );
+
+
+                    btn.disabled =
+                        false;
+
+
+                    btn.innerText =
+                        "Confirmar Presença";
+
+
+                    return;
+                }
+
+
+                if (
+                    total < 1
+                ) {
+
+
+                    alert(
+
+                        "Selecione ao menos 1 adulto ou criança."
+
+                    );
+
+
+                    btn.disabled =
+                        false;
+
+
+                    btn.innerText =
+                        "Confirmar Presença";
+
+
+                    return;
+                }
+
+            }
+
+
+            btn.innerText =
+                "Enviando...";
+
 
             try {
-                const res = await fetch(`${URL_WEB_APP}?nome=${encodeURIComponent(normalizarTextoLocal(nomeInput))}`);
-                const data = await res.json();
 
-                if (data.jaRespondeu) {
-                    msgDiv.className = "msg-limite erro-duplicado";
-                    msgDiv.innerHTML = `⚠️ <strong>${data.mensagem}</strong>`;
-                    btn.disabled = true;
-                    return true;
+
+                // -------------------------------------
+                // ENVIA AO APPS SCRIPT
+                // -------------------------------------
+
+                await fetch(
+                    URL_WEB_APP,
+                    {
+
+                        method:
+                            "POST",
+
+                        mode:
+                            "no-cors",
+
+                        headers: {
+
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                nome:
+                                    nomeCompleto,
+
+                                presenca:
+                                    presenca,
+
+                                adultos:
+
+                                    presenca === "Sim"
+                                        ? adultos
+                                        : 0,
+
+                                criancas:
+
+                                    presenca === "Sim"
+                                        ? criancas
+                                        : 0
+
+                            })
+
+                    }
+                );
+
+
+                // -------------------------------------
+                // CONFIRMA SE REALMENTE FOI GRAVADO
+                // -------------------------------------
+
+                btn.innerText =
+                    "Confirmando...";
+
+
+                const urlVerificacao =
+
+                    `${URL_WEB_APP}` +
+
+                    `?nome=${encodeURIComponent(
+                        normalizarTextoLocal(
+                            nomeCompleto
+                        )
+                    )}` +
+
+                    `&t=${Date.now()}`;
+
+
+                const verificacao =
+                    await fetch(
+
+                        urlVerificacao,
+
+                        {
+
+                            cache:
+                                "no-store"
+
+                        }
+
+                    );
+
+
+                const resultado =
+                    await verificacao.json();
+
+
+                // -------------------------------------
+                // RESPOSTA GRAVADA
+                // -------------------------------------
+
+                if (
+                    resultado.jaRespondeu
+                ) {
+
+
+                    bloquearFormulario(
+                        true
+                    );
+
+
+                    mostrarMensagem(
+
+                        "✅ <strong>Resposta registrada com sucesso!</strong><br>" +
+                        "Obrigado por responder ao convite do Daniel. 🎉",
+
+                        "sucesso"
+
+                    );
+
+
+                    btn.innerText =
+                        "Resposta registrada";
+
+
+                    return;
                 }
 
-                btn.disabled = false;
 
-                if (data.encontrado) {
-                    limitePermitido = data.limite;
-                    msgDiv.innerHTML = `🌟 Convite localizado! Você pode confirmar até <strong>${limitePermitido} pessoa(s)</strong> no total.`;
-                } else {
-                    limitePermitido = 1;
-                    msgDiv.innerHTML = `⚠️ Nome não localizado na lista de convites. Limite padrão: 1 pessoa.`;
-                }
-                return false;
-            } catch (err) {
-                msgDiv.innerText = "Erro ao consultar a lista de convidados.";
-                return false;
+                // -------------------------------------
+                // NÃO FOI POSSÍVEL CONFIRMAR
+                // -------------------------------------
+
+                mostrarMensagem(
+
+                    "Não foi possível confirmar o registro da resposta. " +
+                    "Tente novamente.",
+
+                    "erro"
+
+                );
+
+
+                btn.disabled =
+                    false;
+
+
+                btn.innerText =
+                    "Confirmar Presença";
+
+
             }
-        } else {
-            msgDiv.style.display = "none";
-            return false;
-        }
-    }
 
-    document.getElementById('nome').addEventListener('blur', buscarRestricao);
+            catch (erro) {
 
-    document.getElementById('presenca').addEventListener('change', function() {
-        document.getElementById('camposQuantidade').style.display = this.value === "Sim" ? "block" : "none";
-    });
 
-    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
+                console.error(
+                    erro
+                );
 
-        const btn = document.getElementById('btnConfirmar');
-        const nomeCompleto = document.getElementById('nome').value.trim();
-        const presenca = document.getElementById('presenca').value;
-        const adultos = parseInt(document.getElementById('adultos').value) || 0;
-        const criancas = parseInt(document.getElementById('criancas').value) || 0;
-        const total = adultos + criancas;
 
-        btn.disabled = true;
-        btn.innerText = "Verificando...";
+                mostrarMensagem(
 
-        // Checagem final obrigatória no momento do envio
-        const jaRespondeu = await buscarRestricao();
-        if (jaRespondeu) {
-            alert("Convite respondido, falar com Jana ou Endreo");
-            btn.innerText = "Confirmar Presença";
-            return;
-        }
+                    "Ocorreu um erro ao salvar sua resposta. " +
+                    "Tente novamente.",
 
-        if (presenca === "Sim") {
-            if (total > limitePermitido) {
-                alert(`A quantidade total (${total}) excede o seu limite permitido de ${limitePermitido} pessoa(s).`);
-                btn.disabled = false;
-                btn.innerText = "Confirmar Presença";
-                return;
+                    "erro"
+
+                );
+
+
+                btn.disabled =
+                    false;
+
+
+                btn.innerText =
+                    "Confirmar Presença";
+
             }
-            if (total < 1) {
-                alert("Por favor, selecione ao menos 1 adulto ou criança.");
-                btn.disabled = false;
-                btn.innerText = "Confirmar Presença";
-                return;
-            }
+
         }
+    );
 
-        btn.innerText = "Enviando...";
 
-        try {
-            await fetch(URL_WEB_APP, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    nome: nomeCompleto,
-                    presenca: presenca,
-                    adultos: presenca === "Sim" ? adultos : 0,
-                    criancas: presenca === "Sim" ? criancas : 0
-                })
-            });
-
-            alert("Resposta enviada com sucesso! Obrigado.");
-            document.getElementById('rsvpForm').reset();
-            document.getElementById('mensagemLimite').style.display = 'none';
-        } catch (error) {
-            console.error("Erro:", error);
-            alert("Ocorreu um erro ao salvar sua confirmação. Tente novamente.");
-        }
-
-        btn.disabled = false;
-        btn.innerText = "Confirmar Presença";
-    });
 </script>
 
+
 </body>
+
 </html>
